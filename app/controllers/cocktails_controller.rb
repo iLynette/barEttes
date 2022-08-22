@@ -43,4 +43,13 @@ class CocktailsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+    def set_cocktail
+      @cocktail = Cocktail.find(params[:id])
+    end
+
+    def cocktail_params
+      params.require(:cocktail).permit(:drink_type, :ingredients, :alcohol_content, :calories)
+    end
 end
