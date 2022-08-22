@@ -22,4 +22,16 @@ class CocktailsController < ApplicationController
       end
     end
   end
+
+  def update
+    respond_to do |format|
+      if @cocktail.update(cocktail_params)
+        format.html { redirect_to cocktail_url(@cocktail), notice: "Cocktail was successfully updated." }
+        format.json { render :show, status: :ok, location: @cocktail }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @cocktail.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 end
