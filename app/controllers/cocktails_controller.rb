@@ -1,5 +1,5 @@
 class CocktailsController < ApplicationController
-  before_action :set_cocktail, only: %i[ show edit update destroy ]
+  before_action :set_cocktail, only: %i[show edit update destroy]
 
   def index
     @cocktails = Cocktail.all
@@ -14,7 +14,7 @@ class CocktailsController < ApplicationController
 
     respond_to do |format|
       if @cocktail.save
-        format.html { redirect_to cocktail_url(@cocktail), notice: "Cocktail was successfully created." }
+        format.html { redirect_to cocktail_url(@cocktail), notice: 'Cocktail was successfully created.' }
         format.json { render :show, status: :created, location: @cocktail }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -26,7 +26,7 @@ class CocktailsController < ApplicationController
   def update
     respond_to do |format|
       if @cocktail.update(cocktail_params)
-        format.html { redirect_to cocktail_url(@cocktail), notice: "Cocktail was successfully updated." }
+        format.html { redirect_to cocktail_url(@cocktail), notice: 'Cocktail was successfully updated.' }
         format.json { render :show, status: :ok, location: @cocktail }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -39,17 +39,18 @@ class CocktailsController < ApplicationController
     @cocktail.destroy
 
     respond_to do |format|
-      format.html { redirect_to cocktails_url, notice: "Cocktail was successfully destroyed." }
+      format.html { redirect_to cocktails_url, notice: 'Cocktail was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    def set_cocktail
-      @cocktail = Cocktail.find(params[:id])
-    end
 
-    def cocktail_params
-      params.require(:cocktail).permit(:drink_type, :ingredients, :alcohol_content, :calories)
-    end
+  def set_cocktail
+    @cocktail = Cocktail.find(params[:id])
+  end
+
+  def cocktail_params
+    params.require(:cocktail).permit(:drink_type, :ingredients, :alcohol_content, :calories)
+  end
 end
