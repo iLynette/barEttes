@@ -1,0 +1,8 @@
+<div>
+  <h1 class="font-bold text-4xl">Lists</h1>
+  <div class="cocktails">
+    <%= @cocktails.each do |cocktail| %>
+      <%= cocktail.drink_type %>
+    <% end %>
+  </div>
+</div>
